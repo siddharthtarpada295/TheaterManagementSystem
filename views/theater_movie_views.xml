@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="theater_movie_search" model="ir.ui.view">
+      <field name="name">theater.movie.search</field>
+      <field name="model">theater.movie</field>
+      <field name="arch" type="xml">
+        <search string="Movies">
+          <field name="name" string="Name"/>
+          <field name="director" string="Director"/>
+          <group expand="0" string="Group By">
+            <filter name="language_id" string="Language" context="{'group_by':'language_id'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+	<record id="movie_tree" model="ir.ui.view">
+      <field name="name">theater.movie.tree</field>
+      <field name="model">theater.movie</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+          <field name="minutes"/>
+          <field name="language_id"/>
+          <field name="director" optional="hide"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="theater_movie_form" model="ir.ui.view">
+      <field name="name">theater.movie.form</field>
+      <field name="model">theater.movie</field>
+      <field name="arch" type="xml">
+        <form>	
+          <sheet>
+          	<field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image&quot;}"/>
+          	<div class="oe_title">
+              <h1>
+                <label for="name" class="oe_edit_only" string="Movie Name"/>
+                <field name="name" />
+              </h1>
+            </div>
+            <group>
+              <group>
+                <field name="minutes"/>
+                <field name="hours"/>
+                <field name="release_date"/>
+              </group>
+              <group>
+                <field name="director"/>
+                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" placeholder="Tags..."/>
+                <field name="language_id"/>
+              </group>
+            </group>
+            <notebook>
+              <page string="Cast" name="movie_cast">
+                <field name="cast_ids">
+                  <tree>
+                    <field name="name"/>
+                    <field name="occupation"/>
+                  </tree>
+                </field>
+              </page> 
+              <page string="Shows" name="shows">
+                <tree>
+                  <field name="show_id" context="{'tree_view_ref': 'theater.show.show_tree'}" mode="tree"/>
+                </tree>
+              </page> 
+          	</notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers"/>
+            <field name="message_ids" widget="mail_thread"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+	<record id="movie_action" model="ir.actions.act_window">
+      <field name="name">Movies</field>
+      <field name="res_model">theater.movie</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Add a new Movie
+              </p>
+      </field>
+    </record>
+</odoo>

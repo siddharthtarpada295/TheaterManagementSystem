@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="employee_tree" model="ir.ui.view">
+		<field name="name">employee.tree</field>
+		<field name="model">theater.employee</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name"/>
+				<field name="age"/>
+				<field name="gender"/>
+				<field name="mobile"/>
+				<field name="email"/>
+				<field name="state_id"/>
+				<field name="country_id"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="employee_form" model="ir.ui.view">
+		<field name="name">employee.form</field>
+		<field name="model">theater.employee</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+						<group>
+							<field name="name"/>
+							<field name="birthdate"/>
+							<field name="age" readonly="1"/>
+							<field name="age" invisible="1" />
+							<field name="gender"/>
+						</group>
+						<group>
+							<field name="mobile"/>
+							<field name="email"/>
+						</group>
+						<group>
+							<field name="city"/>
+							<field name="state_id"/>
+							<field name="country_id"/>
+						</group>
+						<group>
+							<field name="joiningdate" options="{'datepicker':{'maxDate':'now'}}"/>
+							<field name="experience"/>
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="cast_tree" model="ir.ui.view">
+		<field name="name">cast.tree</field>
+		<field name="model">movie.cast</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="movie_cast_form" model="ir.ui.view">
+      <field name="name">movie.cast.form</field>
+      <field name="model">movie.cast</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+          	<field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image&quot;}"/>
+          	<div class="oe_title">
+                <label for="name" class="oe_edit_only" string="Name"/>
+                <h1>
+                	<field name="name" placeholder="Name"/>
+                </h1>
+            </div>
+            <group>
+            	<group>
+            		<field name="dob"/>
+            		<label for="date_begin" string="Years active"/>
+                    <div class="o_row">
+                      <field name="date_begin" widget="daterange" nolabel="1" class="oe_inline" options="{'related_end_date': 'date_end'}"/>
+                      <i class="fa fa-long-arrow-right mx-2" aria-label="Arrow icon" title="Arrow"/>
+                      <field name="date_end" widget="daterange" nolabel="1" class="oe_inline" options="{'related_start_date': 'date_begin'}"/>
+                    </div>
+            	</group>
+            	<group>
+            		<field name="occupation"/>
+            	</group>
+            	<group>
+      					<field name="city"/>
+      					<field name="state_id"/>
+      					<field name="country_id"/>
+      				</group>
+            </group>
+            <notebook>
+              <page string="Roles">
+                <tree>
+                  <field name="movie_id" context="{'tree_view_ref': 'theater.movie.movie_tree'}" mode="tree" readonly="1"/>
+                </tree>
+              </page> 
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+  <record id="theater_screens_tree" model="ir.ui.view">
+      <field name="name">theater.screens.tree</field>
+      <field name="model">theater.screens</field>
+      <field name="arch" type="xml">
+        <tree string="Screens">
+          <field name="name"/>
+          <field name="seats_capacity"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="theater_screens_form" model="ir.ui.view">
+      <field name="name">theater.screens.form</field>
+      <field name="model">theater.screens</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <group>
+                <field name="name"/>
+              </group>
+              <group>
+                <field name="seats_capacity"/>
+              </group>
+              <group>
+                <field name="time_id">
+                  <tree  editable="bottom">
+                    <field name="time_begin"/>
+                    <field name="time_end"/>
+                  </tree>
+                </field>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+	<record id="configuration_stages_tree" model="ir.ui.view">
+      <field name="name">configuration.stages.tree</field>
+      <field name="model">configuration.stages</field>
+      <field name="arch" type="xml">
+        <tree string="Show Stages">
+          <field name="sequence" widget="handle"/>
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="configuration_stages_form" model="ir.ui.view">
+      <field name="name">configuration.stages.form</field>
+      <field name="model">configuration.stages</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <group>
+                <field name="name"/>
+              </group>
+              <group>
+                <field name="sequence"/>
+              </group>
+              <group>
+                <field name="stage_active" widget="radio" options="{'vertical': true}"/>
+                <field name="days" attrs="{'invisible': [('stage_active', '!=', 'days_before')], 'required': [('stage_active', '!=', 'days_before')]}"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+	<record id="tags_categories_tree" model="ir.ui.view">
+      <field name="name">tags.categories.tree</field>
+      <field name="model">tags.categories</field>
+      <field name="arch" type="xml">
+        <tree string="Tags Categories">
+          <field name="sequence" widget="handle"/>
+          <field name="name"/>
+          <field name="color" widget="color_picker" type="char"/>
+          <!-- <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/> -->
+        </tree>
+      </field>
+    </record>
+
+    <record id="tags_categories_form" model="ir.ui.view">
+      <field name="name">tags.categories.form</field>
+      <field name="model">tags.categories</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <group>
+                <field name="name"/>
+              </group>
+              <group>
+                <field name="color" widget="color_picker"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+	<!-- Menu Actions -->
+
+	<record id="employee_action" model="ir.actions.act_window">
+		<field name="name">Employee</field>
+		<field name="res_model">theater.employee</field>
+		<field name="view_mode">tree,form</field>
+		<field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+          Add a new Employee
+        </p>
+      </field>
+	</record>
+
+	<record id="cast_action" model="ir.actions.act_window">
+		<field name="name">Cast</field>
+		<field name="res_model">movie.cast</field>
+		<field name="view_mode">tree,form</field>
+		<field name="help" type="html">
+			<p class="o_view_nocontent_smiling_face">
+          		Add a new Actor or Actress Profile
+        	</p>
+        </field>
+	</record>
+
+  <record id="screens_action" model="ir.actions.act_window">
+    <field name="name">Screens</field>
+    <field name="res_model">theater.screens</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">
+              Add a new Screen For Theater
+          </p>
+        </field>
+  </record>
+
+	<record id="stages_action" model="ir.actions.act_window">
+      <field name="name">Stages</field>
+      <field name="res_model">configuration.stages</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+          Add a new Stages
+        </p>
+      </field>
+    </record>
+
+    <record id="tags_action" model="ir.actions.act_window">
+      <field name="name">Tags Categories</field>
+      <field name="res_model">tags.categories</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+          Add a new Tags Categories
+        </p>
+      </field>
+    </record>
+</odoo>

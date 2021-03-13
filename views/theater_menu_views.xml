@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main Menu -->
+    <menuitem name="Theater"
+        id="theater_main_menu"
+        sequence="1"/>
+
+    <!-- Header -->
+    <menuitem name="Movies"
+      id="menu_theater_movie"
+      parent="theater_main_menu"
+      action="movie_action"
+      sequence="0"/>
+
+    <menuitem name="Shows"
+      id="menu_theater_shows"
+      parent="theater_main_menu"
+      action="show_action"
+      sequence="1"/>
+
+    <menuitem name="Booking"
+      id="menu_booking"
+      parent="theater_main_menu"
+      action="booking_action"
+      sequence="2"/>
+
+    <menuitem name="Configuration"
+      id="menu_configuration"
+      parent="theater_main_menu"
+      sequence="3"/>
+
+    <!-- Sub Menu -->
+    <menuitem name="Employee"
+      id="menu_theater_employee"
+      parent="menu_configuration"
+      action="employee_action"
+      sequence="0"/>
+
+    <menuitem name="Cast"
+      id="menu_theater_cast"
+      parent="menu_configuration"
+      action="cast_action"
+      sequence="1"/>
+
+    <menuitem name="Screens"
+      id="menu_theater_Screens"
+      parent="menu_configuration"
+      action="screens_action"
+      sequence="1"/>
+      
+    <menuitem name="Stages"
+      id="configuration_stages_menu_action"
+      parent="menu_configuration"
+      action="stages_action"
+      sequence="2"/>
+
+    <menuitem name="Tag Categories"
+      id="tags_categories_menu_action"
+      parent="menu_configuration"
+      action="tags_action"
+      sequence="3"/>
+
+    
+
+</odoo>

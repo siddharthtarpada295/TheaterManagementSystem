@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_theater_show,theater.show,model_theater_show,base.group_user,1,1,1,1
+access_tags_categories,tags.categories,model_tags_categories,base.group_user,1,1,1,1
+access_configuration_stages,configuration.stages,model_configuration_stages,base.group_user,1,1,1,1
+access_theater_employee,theater.employee,model_theater_employee,base.group_user,1,1,1,1
+access_theater_booking,theater.booking,model_theater_booking,base.group_user,1,1,1,1
+access_theater_movie,theater.movie,model_theater_movie,base.group_user,1,1,1,1
+access_movie_cast,movie.cast,model_movie_cast,base.group_user,1,1,1,1
+access_theater_screens,theater.screens,model_theater_screens,base.group_user,1,1,1,1
+access_show_timing,show.timing,model_show_timing,base.group_user,1,1,1,1
+access_screen_seating,screen.seating,model_screen_seating,base.group_user,1,1,1,1
+access_shows,shows,model_shows,base.group_user,1,1,1,1
